@@ -10,7 +10,7 @@ import Dashboard from "../pages/Dashboard";
 import ClientForm from "../pages/Management/ClientForm";
 import Service from "../pages/Management/Service";
 import Order from "../pages/Management/Order";
-// import Vendor from "../pages/Management/Vendor";
+import Vendor from "../pages/Management/Vendor/Dashboard";
 // import User from "../pages/Management/User";
 import Payment from "../pages/Payment";
 // import OrderDetail from "../pages/OrderDetail";
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       { path: ROUTES.CLIENT_FORM.slice(1), element: <ClientForm /> },
       { path: ROUTES.SERVICE.slice(1), element: <Service /> },
       { path: ROUTES.ORDER.slice(1), element: <Order /> },
-      //   { path: ROUTES.VENDOR.slice(1), element: <Vendor /> },
+        { path: ROUTES.VENDOR.slice(1), element: <Vendor /> },
       //   { path: ROUTES.USER.slice(1), element: <User /> },
       { path: ROUTES.PAYMENT.slice(1), element: <Payment /> },
       //   { path: ROUTES.ORDER_DETAIL.slice(1), element: <OrderDetail /> },
@@ -38,3 +38,4 @@ const router = createBrowserRouter([
 export default function AppRouter() {
   return <RouterProvider router={router} />;
 }
+ 
