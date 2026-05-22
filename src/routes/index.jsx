@@ -1,36 +1,85 @@
-// src/routes/index.jsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { CircularProgress, Box } from "@mui/material";
 
 import MainLayout from "../layouts/MainLayout";
-import { ROUTES } from "../constants/routes";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
-// ─── Direct imports ────────────────────────────────────────────────────────
-import Dashboard from "../pages/Dashboard";
-import ClientForm from "../pages/Management/ClientForm";
-import Service from "../pages/Management/Service";
-import Order from "../pages/Management/Order";
-// import Vendor from "../pages/Management/Vendor";
-// import User from "../pages/Management/User";
-import Payment from "../pages/Payment";
-// import OrderDetail from "../pages/OrderDetail";
-// import UserGroup from "../pages/UserGroup";
-
-// ─── Router ────────────────────────────────────────────────────────────────
+import Payment from "../pages/Payment/Payment";
+import Report from "../pages/Report/Report";
+import Coupons from "../pages/Coupons/Coupons";
+import Order from "../pages/Order/Order";
+import Products from "../pages/Products/Products";
+import Category from "../pages/Category/Category";
+import Customers from "../pages/Customers/Customers";
+import Inbox from "../pages/InboxPage/Inbox";
+import KnowledgeBase from "../pages/KnowledgeBase/KnowledgeBase";
+import ProductUpdates from "../pages/ProductUpdates/ProductUpdates";
+import Setting from "../pages/Setting/Setting";
+import Price from "../pages/Price/Price";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+
     children: [
-      { index: true, element: <Dashboard /> },
-      { path: ROUTES.CLIENT_FORM.slice(1), element: <ClientForm /> },
-      { path: ROUTES.SERVICE.slice(1), element: <Service /> },
-      { path: ROUTES.ORDER.slice(1), element: <Order /> },
-      //   { path: ROUTES.VENDOR.slice(1), element: <Vendor /> },
-      //   { path: ROUTES.USER.slice(1), element: <User /> },
-      { path: ROUTES.PAYMENT.slice(1), element: <Payment /> },
-      //   { path: ROUTES.ORDER_DETAIL.slice(1), element: <OrderDetail /> },
-      //   { path: ROUTES.USER_GROUP.slice(1), element: <UserGroup /> },
+      {
+        index: true,
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+
+      {
+        path: "orders",
+        element: <Order />,
+      },
+
+      {
+        path: "products",
+        element: <Products />,
+      },
+
+      {
+        path: "category",
+        element: <Category />,
+      },
+
+      {
+        path: "customer",
+        element: <Customers />,
+      },
+
+      {
+        path: "reports",
+        element: <Report />,
+      },
+
+      {
+        path: "coupons",
+        element: <Coupons />,
+      },
+
+      {
+        path: "inbox",
+        element: <Inbox />,
+      },
+      {
+        path: "knowledge",
+        element: <KnowledgeBase />,
+      },
+
+      {
+        path: "updates",
+        element: <ProductUpdates />,
+      },
+
+      {
+        path: "setting",
+        element: <Setting />,
+      },
+
+      {
+        path: "price",
+        element: <Price />,
+      },
     ],
   },
 ]);

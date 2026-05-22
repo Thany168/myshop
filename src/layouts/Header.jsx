@@ -6,11 +6,13 @@ import {
   Box,
   Tooltip,
   Typography,
+  Avatar,
 } from "@mui/material";
 import { Menu as MenuIcon, Fullscreen, GridView } from "@mui/icons-material";
 import { DRAWER_WIDTH } from "./Sidebar";
 
 export default function Header({ onMenuClick }) {
+  const handleLogout = () => {};
   return (
     <AppBar
       position="fixed"
@@ -18,7 +20,7 @@ export default function Header({ onMenuClick }) {
       sx={{
         width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
         ml: { md: `${DRAWER_WIDTH}px` },
-        bgcolor: "#e91e8c",
+        bgcolor: "#0000E3",
         zIndex: (theme) => theme.zIndex.drawer - 1,
       }}
     >
@@ -35,15 +37,9 @@ export default function Header({ onMenuClick }) {
         <Box sx={{ flexGrow: 1 }} />
 
         {/* Right actions */}
-        <Tooltip title="Fullscreen">
-          <IconButton color="inherit" size="small">
-            <Fullscreen />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Apps">
-          <IconButton color="inherit" size="small" sx={{ ml: 0.5 }}>
-            <GridView />
-          </IconButton>
+
+        <Tooltip title="UserProfile">
+          <Avatar onClick={handleLogout}>T</Avatar>
         </Tooltip>
       </Toolbar>
     </AppBar>

@@ -1,4 +1,3 @@
-// src/layouts/Sidebar.jsx
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -8,197 +7,280 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Collapse,
   Typography,
-  Avatar,
   Divider,
+  Badge,
 } from "@mui/material";
 import {
   Dashboard,
-  Pets,
-  Group,
-  PersonAdd,
-  MiscellaneousServices,
   ShoppingCart,
-  Storefront,
-  Person,
-  Payment,
-  Receipt,
-  ManageAccounts,
+  Inventory2,
+  Category,
+  People,
+  BarChart,
+  LocalOffer,
+  Inbox,
+  HelpOutlineOutlined,
+  SystemUpdateAlt,
+  PersonOutlined,
+  SettingsOutlined,
   Logout,
-  ExpandLess,
-  ExpandMore,
 } from "@mui/icons-material";
-import { ROUTES } from "../constants/routes";
+import { Route } from "react-router-dom";
 
 const DRAWER_WIDTH = 220;
 
-const navItems = [
-  { label: "Dashboard", icon: <Dashboard />, path: ROUTES.DASHBOARD },
+const BG = "#1a2236";
+const ACTIVE_BG = "rgba(255,255,255,0.12)";
+const HOVER_BG = "rgba(255,255,255,0.06)";
+const TEXT_MUTED = "#8b9ab5";
+const TEXT_ACTIVE = "#ffffff";
+const TEXT_SECTION = "#4e5d78";
 
+const mainNav = [
   {
-    label: "Management",
-    icon: <Group />,
-    children: [
-      { label: "Client Form", icon: <PersonAdd />, path: ROUTES.CLIENT_FORM },
-      {
-        label: "Service",
-        icon: <MiscellaneousServices />,
-        path: ROUTES.SERVICE,
-      },
-      { label: "Order", icon: <ShoppingCart />, path: ROUTES.ORDER },
-      { label: "Vendor", icon: <Storefront />, path: ROUTES.VENDOR },
-      { label: "User", icon: <Person />, path: ROUTES.USER },
-    ],
+    label: "Dashboard",
+    icon: <Dashboard fontSize="small" />,
+    path: "/dashboard",
   },
-  { label: "Payment", icon: <Payment />, path: ROUTES.PAYMENT },
-  { label: "Order Detail", icon: <Receipt />, path: ROUTES.ORDER_DETAIL },
-  { label: "User Group", icon: <ManageAccounts />, path: ROUTES.USER_GROUP },
+  {
+    label: "Orders",
+    icon: <ShoppingCart fontSize="small" />,
+    path: "/orders",
+    badge: 16,
+  },
+  {
+    label: "Products",
+    icon: <Inventory2 fontSize="small" />,
+    path: "/products",
+  },
+  {
+    label: "Categories",
+    icon: <Category fontSize="small" />,
+    path: "/category",
+  },
+  {
+    label: "Customers",
+    icon: <People fontSize="small" />,
+    path: "/customer",
+  },
+  { label: "Reports", icon: <BarChart fontSize="small" />, path: "/reports" },
+  { label: "Coupons", icon: <LocalOffer fontSize="small" />, path: "/coupons" },
+  { label: "Inbox", icon: <Inbox fontSize="small" />, path: "/inbox" },
 ];
 
-const activeStyle = {
-  backgroundColor: "#e91e8c",
-  color: "#fff",
-  borderRadius: "6px",
-  "& .MuiListItemIcon-root": { color: "#fff" },
-  "&:hover": { backgroundColor: "#c0176f" },
+const infoNav = [
+  {
+    label: "Knowledge Base",
+    icon: <HelpOutlineOutlined fontSize="small" />,
+    path: "/knowledge",
+  },
+  {
+    label: "Product Updates",
+    icon: <SystemUpdateAlt fontSize="small" />,
+    path: "/updates",
+  },
+];
+
+const settingsNav = [
+  {
+    label: "Personal Settings",
+    icon: <PersonOutlined fontSize="small" />,
+    path: "/setting",
+  },
+];
+
+const itemSx = {
+  borderRadius: "8px",
+  mx: 1,
+  mb: 0.25,
+  py: 0.9,
+  px: 1.25,
+  color: TEXT_MUTED,
+  "& .MuiListItemIcon-root": { color: TEXT_MUTED, minWidth: 34 },
+  "&:hover": {
+    backgroundColor: HOVER_BG,
+    color: "#c8d3e8",
+    "& .MuiListItemIcon-root": { color: "#c8d3e8" },
+  },
 };
 
-const defaultStyle = {
-  color: "#cbd5e0",
-  borderRadius: "6px",
-  "& .MuiListItemIcon-root": { color: "#a0aec0" },
-  "&:hover": { backgroundColor: "#3a4a5c" },
+const activeSx = {
+  backgroundColor: ACTIVE_BG,
+  color: TEXT_ACTIVE,
+  "& .MuiListItemIcon-root": { color: TEXT_ACTIVE },
+  "&:hover": {
+    backgroundColor: ACTIVE_BG,
+    color: TEXT_ACTIVE,
+  },
 };
 
 function NavItem({ item }) {
   const location = useLocation();
-  const isActive = location.pathname === item.path;
+  const isActive =
+    item.path === "/"
+      ? location.pathname === item.path
+      : location.pathname.startsWith(item.path);
 
   return (
     <ListItemButton
       component={NavLink}
       to={item.path}
-      sx={{
-        ...(isActive ? activeStyle : defaultStyle),
-        mx: 1,
-        mb: 0.5,
-        py: 0.8,
-      }}
+      sx={{ ...itemSx, ...(isActive ? activeSx : {}) }}
     >
-      {item.icon && (
-        <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
-      )}
+      <ListItemIcon>{item.icon}</ListItemIcon>
       <ListItemText
         primary={item.label}
         primaryTypographyProps={{
-          fontSize: 14,
-          fontWeight: isActive ? 700 : 400,
+          fontSize: 13.5,
+          fontWeight: isActive ? 600 : 400,
         }}
       />
+      {item.badge && (
+        <Box
+          sx={{
+            bgcolor: "#fff",
+            color: BG,
+            fontSize: 11,
+            fontWeight: 700,
+            borderRadius: "20px",
+            px: 0.9,
+            py: 0.1,
+            lineHeight: "18px",
+          }}
+        >
+          {item.badge}
+        </Box>
+      )}
     </ListItemButton>
   );
 }
 
-function NavGroup({ item }) {
-  const location = useLocation();
-  const isChildActive = item.children?.some(
-    (c) => location.pathname === c.path,
-  );
-  const [open, setOpen] = useState(isChildActive || false);
-
+function SectionLabel({ label }) {
   return (
-    <>
-      <ListItemButton
-        onClick={() => setOpen((o) => !o)}
-        sx={{
-          ...defaultStyle,
-          mx: 1,
-          mb: 0.5,
-          py: 0.8,
-          ...(isChildActive && {
-            color: "#e91e8c",
-            "& .MuiListItemIcon-root": { color: "#e91e8c" },
-          }),
-        }}
-      >
-        <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
-        <ListItemText
-          primary={item.label}
-          primaryTypographyProps={{ fontSize: 14 }}
-        />
-        {open ? (
-          <ExpandLess fontSize="small" />
-        ) : (
-          <ExpandMore fontSize="small" />
-        )}
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List disablePadding sx={{ pl: 1 }}>
-          {item.children.map((child) => (
-            <NavItem key={child.path} item={child} />
-          ))}
-        </List>
-      </Collapse>
-    </>
+    <Typography
+      sx={{
+        fontSize: 11,
+        color: TEXT_SECTION,
+        fontWeight: 500,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        px: 2.25,
+        pt: 1.5,
+        pb: 0.75,
+      }}
+    >
+      {label}
+    </Typography>
   );
 }
 
 export default function Sidebar({ mobileOpen, onClose }) {
   const content = (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        bgcolor: BG,
+      }}
+    >
       {/* Brand */}
       <Box
-        sx={{ px: 2, py: 2.5, display: "flex", alignItems: "center", gap: 1.5 }}
+        sx={{
+          px: 2,
+          py: 2.5,
+          display: "flex",
+          alignItems: "center",
+          gap: 1.25,
+        }}
       >
         <Box
           sx={{
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            bgcolor: "#e91e8c",
+            width: 32,
+            height: 32,
+            borderRadius: "8px",
+            bgcolor: "#3b82f6",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            color: "#fff",
+            fontWeight: 700,
+            fontSize: 15,
           }}
         >
-          <p>Logo </p>
+          V
         </Box>
         <Typography
-          variant="subtitle1"
-          fontWeight={700}
+          fontSize={14}
+          fontWeight={600}
           color="#fff"
-          fontSize={15}
+          letterSpacing="0.01em"
         >
           VIP KDMVSTORE
         </Typography>
       </Box>
 
-      <Divider sx={{ borderColor: "#3a4a5c", mx: 2 }} />
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.08)", mx: 2, mb: 1 }} />
 
-      <Divider sx={{ borderColor: "#3a4a5c", mx: 2, mb: 1 }} />
-
-      {/* Nav */}
-      <List sx={{ flex: 1, px: 0 }}>
-        {navItems.map((item) =>
-          item.children ? (
-            <NavGroup key={item.label} item={item} />
-          ) : (
+      {/* Main nav */}
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: "auto",
+          "&::-webkit-scrollbar": { width: 4 },
+          "&::-webkit-scrollbar-track": { background: "transparent" },
+          "&::-webkit-scrollbar-thumb": {
+            background: "rgba(255,255,255,0.12)",
+            borderRadius: 4,
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            background: "rgba(255,255,255,0.22)",
+          },
+        }}
+      >
+        <List disablePadding sx={{ px: 0 }}>
+          {mainNav.map((item) => (
             <NavItem key={item.label} item={item} />
-          ),
-        )}
-      </List>
+          ))}
+        </List>
+
+        {/* Other Information */}
+        <SectionLabel label="Other Information" />
+        <List disablePadding>
+          {infoNav.map((item) => (
+            <NavItem key={item.label} item={item} />
+          ))}
+        </List>
+
+        {/* Settings */}
+        <SectionLabel label="Settings" />
+        <List disablePadding>
+          {settingsNav.map((item) => (
+            <NavItem key={item.label} item={item} />
+          ))}
+        </List>
+      </Box>
 
       {/* Logout */}
-      <Divider sx={{ borderColor: "#3a4a5c", mx: 2 }} />
-      <List>
-        <ListItemButton sx={{ ...defaultStyle, mx: 1, my: 0.5, py: 0.8 }}>
-          <ListItemIcon sx={{ minWidth: 36 }}>
-            <Logout />
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.08)", mx: 2 }} />
+      <List sx={{ py: 1 }}>
+        <ListItemButton
+          sx={{
+            ...itemSx,
+            "&:hover": {
+              backgroundColor: HOVER_BG,
+              color: "#ef4444",
+              "& .MuiListItemIcon-root": { color: "#ef4444" },
+            },
+          }}
+        >
+          <ListItemIcon>
+            <Logout fontSize="small" />
           </ListItemIcon>
           <ListItemText
             primary="Logout"
-            primaryTypographyProps={{ fontSize: 14 }}
+            primaryTypographyProps={{ fontSize: 13.5 }}
           />
         </ListItemButton>
       </List>
@@ -210,7 +292,6 @@ export default function Sidebar({ mobileOpen, onClose }) {
       component="nav"
       sx={{ width: { md: DRAWER_WIDTH }, flexShrink: { md: 0 } }}
     >
-      {/* Mobile */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -218,17 +299,25 @@ export default function Sidebar({ mobileOpen, onClose }) {
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { width: DRAWER_WIDTH },
+          "& .MuiDrawer-paper": {
+            width: DRAWER_WIDTH,
+            bgcolor: BG,
+            border: "none",
+          },
         }}
       >
         {content}
       </Drawer>
-      {/* Desktop */}
+
       <Drawer
         variant="permanent"
         sx={{
           display: { xs: "none", md: "block" },
-          "& .MuiDrawer-paper": { width: DRAWER_WIDTH },
+          "& .MuiDrawer-paper": {
+            width: DRAWER_WIDTH,
+            bgcolor: BG,
+            border: "none",
+          },
         }}
         open
       >
