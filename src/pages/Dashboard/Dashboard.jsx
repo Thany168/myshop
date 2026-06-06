@@ -1,105 +1,314 @@
-import React from "react";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import React, { useState } from "react";
+import {Chart as ChartJS ,defaults} from 'chart.js/auto'
+import {Line,Bar} from 'react-chartjs-2'
+import { Button} from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import orders from "./data/Orders.json"
+import lastsales from './data/last7daysale.json'
+import TableTransaction from "./component/Transactiontable";
+import Unitsoldtable from "./component/Unitsoldtable";
 function Dashboard() {
+
+const uv = [35, 55, 80, 95, 55, 70];
+const nu = [35, 55, 80, 55, 95, 55];
+const eu = [35, 55, 95, 70, 80, 55];
+const may21=orders.filter(item=>item.date==='may 21')
+const may22=orders.filter(item=>item.date==='may 22')
+const hours=[1,4,8,12,24]
+
   return (
     <>
-      <div>
-        <div className="w-full flex justify-between">
-          <div>
-            <p className="text-xl">DashBoard</p>
-          </div>
-          <div className="text-sm">
-            <span className="text-blue-400">Home</span> / DashBoard
+      <div >
+        <div className="w-full flex justify-between ">
+          <b className="text-2xl">DashBoard</b>
+          <button className="text-[#1f5eff] box-border border border-[#d8dced]  rounded font-medium px-5"><SettingsIcon/> Manag</button>
+        </div>
+        <div className=" grid md:grid-cols-2 md:gap-3 xl:grid-cols-5">
+          <div className="w-full mt-7 ">
+          <div className="shadow-md p-1 w-full flex justify-evenly rounded">
+            <div >
+              <b className="text-1xl">$10.54</b> 
+              <p className="text-xs">Total Reven</p>
+              <p className="text-green-400 ">22.45% ^</p>
+            </div>
+            <div className="bg-blue-100 text-blue-400 font-bold text-xl h-10 w-10 rounded-full text-center item-center mt-3 py-1 ">
+                $
+            </div>
+            
           </div>
         </div>
-        <div className=" mt-8 grid gap-y-4 md:grid-cols-2 md:gap-5  lg:grid-cols-2 xl:grid-cols-4 ">
-          <div className=" rounded w-full  h-32 bg-[#17A2B8]">
-            <div className=" p-3 flex justify-between">
-              <div className="grid gap-y-4 text-white ">
-                <b className="text-2xl">150</b>
-                <p className="text-1xl">Total Pets</p>
-              </div>
-              <div className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="80px"
-                  viewBox="0 -960 960 960"
-                  width="100px"
-                  fill="#e3e3e3"
-                >
-                  <path d="M169.86-485Q132-485 106-511.14t-26-64Q80-613 106.14-639t64-26Q208-665 234-638.86t26 64Q260-537 233.86-511t-64 26ZM291-681.14q-26-26.14-26-64T291.14-809q26.14-26 64-26T419-808.86q26 26.14 26 64T418.86-681q-26.14 26-64 26T291-681.14Zm250 0q-26-26.14-26-64T541.14-809q26.14-26 64-26T669-808.86q26 26.14 26 64T668.86-681q-26.14 26-64 26T541-681.14ZM789.86-485Q752-485 726-511.14t-26-64Q700-613 726.14-639t64-26Q828-665 854-638.86t26 64Q880-537 853.86-511t-64 26ZM266-75q-42 0-69-31.53-27-31.52-27-74.47 0-42 25.5-74.5T250-318q22-22 41-46.5t36-50.5q29-44 65-82t88-38q52 0 88.5 38t65.5 83q17 26 35.5 50t40.5 46q29 30 54.5 62.5T790-181q0 42.95-27 74.47Q736-75 694-75q-54 0-107-9t-107-9q-54 0-107 9t-107 9Z" />
-                </svg>
-              </div>
+        <div className="w-full mt-7 ">
+          <div className="shadow-md p-1 w-full flex justify-evenly rounded">
+            <div >
+              <b className="text-1xl">$10.54</b> 
+              <p className="text-xs">Total Reven</p>
+              <p className="text-green-400 ">22.45% ^</p>
             </div>
-            <button className="w-full  text-white text-xs items-center bg-[#1591A5]">
-              More Info <ArrowCircleRightIcon />
-            </button>
+            <div className="bg-blue-100 text-blue-400 font-bold text-xl h-10 w-10 rounded-full text-center item-center mt-3 py-1 ">
+                <ShoppingCartIcon/>
+            </div>
+            
           </div>
-          <div className=" rounded w-full  h-32 bg-[#006EE5]">
-            <div className=" p-3 flex justify-between">
-              <div className="grid gap-y-4 text-white ">
-                <b className="text-2xl">545</b>
-                <p className="text-1xl">Total Pet Products</p>
+        </div>
+        <div className="w-full mt-7 ">
+          <div className="shadow-md p-1 w-full flex justify-evenly rounded">
+            <div >
+              <p className="text-xs text-gray-500 ">Unique Visits</p>
+              <b className="text-1xl">$10.54</b> 
+              <p className="text-green-400 ">22.45% ^</p>
+            </div>
+            <div className="flex gap-1 h-14 w-32 items-end justify-center ml-5 ">
+              {uv.map((value,index)=>(
+                <div key={index} className={`rounded w-3 ${index===3?"bg-yellow-400":"bg-yellow-200"}`} style={{height:value+"%"}}
+                    
+                />
+              ))}           
+            </div>
+          </div>
+        </div>
+        <div className="w-full mt-7 ">
+          <div className="shadow-md p-1 w-full flex justify-evenly rounded">
+            <div >
+              <p className="text-xs text-gray-500 ">Unique Visits</p>
+              <b className="text-1xl">$10.54</b> 
+              <p className="text-green-400 ">22.45% ^</p>
+            </div>
+            <div className="flex gap-1 h-14 w-32 items-end justify-center ml-5 ">
+              {nu.map((value,index)=>(
+                <div key={index} className={`rounded w-3 ${index===4?"bg-green-400":"bg-green-200"}`} style={{height:value+"%"}}
+                    
+                />
+              ))}           
+            </div>
+          </div>
+        </div>
+        <div className="w-full mt-7 ">
+          <div className="shadow-md p-1 w-full flex justify-evenly rounded">
+            <div >
+              <p className="text-xs text-gray-500 ">Unique Visits</p>
+              <b className="text-1xl">$10.54</b> 
+              <p className="text-green-400 ">22.45% ^</p>
+            </div>
+            <div className="flex gap-1 h-14 w-32 items-end justify-center ml-5 ">
+              {eu.map((value,index)=>(
+                <div key={index} className={`rounded w-3 ${index===2?"bg-blue-700":"bg-blue-200"}`} style={{height:value+"%"}}
+                    
+                />
+              ))}           
+            </div>
+          </div>
+        </div>
+        </div>
+        <div>
+          <div className="grid gap-4 h-[400]  xl:flex ">
+            <div className=" sm:w-[100%] xl:w-[75%] 2xl:w-[75%] h-max mt-7 p-4 shadow-md ">
+              <div className="flex justify-between">
+                <div><p className="font-bold text-md py-4">Orders Over Time</p></div>
+                <div>
+                    <button className="group relative py-4">
+                      Last 12 Hours <KeyboardArrowDownIcon/>
+                      <div className="goup bg-gray-800 text-white rounded w-[130px] absolute scale-y-0 group-focus:scale-y-100 p-2 top-0">
+                        {hours.map((time,index)=>(
+                          <div key={index} className="hover:bg-gray-400 rounded " >Last {time} Hours</div>
+                        ))}
+                        
+                      </div>
+                    </button>
+                </div>
               </div>
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="80px"
-                  viewBox="0 -960 960 960"
-                  width="100px"
-                  fill="#e3e3e3"
-                >
-                  <path d="M220-80q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h110v-10q0-63 43.5-106.5T480-880q63 0 106.5 43.5T630-730v10h110q24 0 42 18t18 42v520q0 24-18 42t-42 18H220Zm0-60h520v-520H630v90q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37v-90H390v90q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37v-90H220v520Zm170-580h180v-10q0-38-26-64t-64-26q-38 0-64 26t-26 64v10ZM220-140v-520 520Z" />
-                </svg>
+                  <div className="flex gap-10  top-4">
+                    <div><b className="text-xl">645</b> <br /> <span className="text-gray-500 text-sm">Order on May 22</span></div>
+                    <div><b className="text-xl">472</b> <br /> <span className="text-gray-500 text-sm">Order on May 21</span></div>
+                  </div>
+                  <div className=" w-full ">
+                    <Line 
+                    
+                    data={{
+                      
+                      labels:may21.map(item=>item.time.replace(':00','').replace(' ','')),
+                      
+                      datasets:[
+                        {
+                        label:"May 21",
+                        data:may21.map(item=>item.order),
+                        borderColor: '#d1d5db',
+                        backgroundColor: '#d1d5db',
+                        pointRadius:0,
+                        pointHoverRadius:7,
+                        pointHitRadius:20,
+                        pointBackgroundColor:"white",
+                        pointHoverBorderColor:"#d1d5db",
+                        pointHoverBorderWidth:4
+                        
+                        
+                        },
+                        {
+                          label:"May 22",
+                          data:may22.map(item=>item.order),
+                          borderColor: '#2563eb',
+                          backgroundColor: '#2563eb',
+                          pointRadius:0,
+                          pointHitRadius:20,
+                          pointHoverRadius:7,
+                          pointHoverBorderWidth:4,
+                          pointHoverBackgroundColor:"white",
+                          pointHoverBorderColor:"#2563eb",
+                          
+                        }
+                    ]
+                      
+                    }} 
+                    
+                    options={{
+                          responsive: true,
+                          plugins: {
+                            tooltip:{
+                              titleAlign:'center',
+                              padding:10,
+                              yAlign:'bottom',
+                              displayColors:false,
+                              borderWidth:400,
+                              callbacks:{
+                                
+                                title: function (context){
+                                  
+                                  return `    ${context[0].formattedValue} Orders   `
+                                },
+                                label:function(context){
+                                    return ''
+                                },
+                                beforeBody: function(context){
+                                  return `    ${context[0].dataset.label} , ${context[0].label}   `
+                                },
+                                
+                              }
+                            },
+                            legend: {        
+                              position: 'top',
+                              align: 'end',
+                            },
+                          },
+                          
+                          scales: {
+                            y: {
+                              beginAtZero: true,
+                              min:0,
+                              max:50,
+                              ticks:{
+                                stepSize:10
+                              },
+                              grid: {
+                                color: '#eee'
+                              }
+                            },
+                            x: {
+                              grid: {
+                                display: false
+                              }
+                            }
+                          }
+                        }}
+                    />
+                  </div>
+                       
+              </div>
+
+            </div> 
+            <div className="mt-7  sm:w-[100%] 2xl:w-[25%] xl:w-[25%]   p-4 shadow-md">
+              <div className="py-4 font-bold">Last 7 Days Sales</div>
+              <div className="mt-6">
+                <b className="text-xl">1,259</b> <br />
+                <span className="text-sm">Items Sold</span>
+              </div>
+              <div className="mt-7">
+                <b className="text-xl">$12,546</b> <br />
+                <span className="text-sm">Revenue</span>
+              </div>
+              <div className="mt-5">
+                <hr style={{height:"5px"}}/>
+              </div>
+              <div className="mt-5 items-end">
+                <Bar
+                className=""
+                
+                  data={{
+                    labels:lastsales.map(item=>item.day),
+                    
+                    datasets:[
+                      {
+                        data:lastsales.map(item=>item.income),
+                        barThickness:12,
+                        backgroundColor:"#1fd286",
+                        borderRadius:10
+                      }
+                    ]
+                    
+                  }}
+                  options={{
+                    plugins:{
+                      tooltip:{
+                        displayColors:false,
+                        yAlign:"bottom",
+                        callbacks:{
+                          title:function(context){
+                            return ''
+                          },
+                          label:function(context){
+                            return `$ ${context.formattedValue}`
+                          }
+                        }
+                      },
+                      legend:{
+                        display:false
+                      }
+                    },
+                    scales:{
+                      x:{
+                        border:{
+                          display:false
+                        },
+                      grid:{display:false}
+                      },
+                      y:{
+                        border:{
+                          display:false
+                        },
+                        ticks:{
+                          display:false
+                        },
+                        grid:{
+                          display:false
+                        }
+                      }
+                    }
+                  }}
+                />
               </div>
             </div>
-            <button className="w-full  text-white text-xs items-center bg-[#007CBA]">
-              More Info <ArrowCircleRightIcon />
-            </button>
           </div>
-          <div className=" rounded w-full  h-32 bg-[#28A745]">
-            <div className=" p-3 flex justify-between">
-              <div className="grid gap-y-4 text-white ">
-                <b className="text-2xl">1322</b>
-                <p className="text-1xl">Total Vendors</p>
-              </div>
-              <div className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="80px"
-                  viewBox="0 -960 960 960"
-                  width="100px"
-                  fill="#e3e3e3"
-                >
-                  <path d="m480-840 320 240v480H160v-480l320-240Zm78 437.88q32-32.12 32-78T557.88-558q-32.12-32-78-32T402-557.88q-32 32.12-32 78T402.12-402q32.12 32 78 32T558-402.12Zm-113.5-42.2q-14.5-14.33-14.5-35.5 0-21.18 14.32-35.68 14.33-14.5 35.5-14.5 21.18 0 35.68 14.32 14.5 14.33 14.5 35.5 0 21.18-14.32 35.68-14.33 14.5-35.5 14.5-21.18 0-35.68-14.32ZM479-250q-55 0-106.5 18T278-180h403q-44-34-95.5-52T479-250ZM220-574v365q54-48 120.52-74.5Q407.03-310 479-310q72.67 0 139.84 27Q686-256 740-208v-366L480-763 220-574Zm260 94Z" />
-                </svg>
-              </div>
+          <div></div>
+        </div>
+        <div className=" grid mt-7 cols-1  gap-5 xl:grid-cols-2">
+          <div className="w-[100%] bg-white p-4 shadow-md">
+            <div>
+              <b>Recent Transactions</b>
             </div>
-            <button className="w-full  text-white text-xs items-center bg-[#24963E]">
-              More Info <ArrowCircleRightIcon />
-            </button>
+            <div className="mt-7">
+              <TableTransaction/>
+            </div>
           </div>
-          <div className=" rounded w-full  h-32 bg-[#FFC107]">
-            <div className=" p-3 flex justify-between">
-              <div className="grid gap-y-4 text-white ">
-                <b className="text-2xl">44,300.00</b>
-                <p className="text-1xl">Total Income</p>
-              </div>
-              <div className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="80px"
-                  viewBox="0 -960 960 960"
-                  width="100px"
-                  fill="#e3e3e3"
-                >
-                  <path d="M540-420q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM220-280q-24.75 0-42.37-17.63Q160-315.25 160-340v-400q0-24.75 17.63-42.38Q195.25-800 220-800h640q24.75 0 42.38 17.62Q920-764.75 920-740v400q0 24.75-17.62 42.37Q884.75-280 860-280H220Zm100-60h440q0-42 29-71t71-29v-200q-42 0-71-29t-29-71H320q0 42-29 71t-71 29v200q42 0 71 29t29 71Zm480 180H100q-24.75 0-42.37-17.63Q40-195.25 40-220v-460h60v460h700v60ZM220-340v-400 400Z" />
-                </svg>
-              </div>
+          <div className=" w-[100%]  bg-white p-4 shadow-md rounded">
+            <div>
+            <div>
+              <b>Top Products by Units Sold</b>
             </div>
-            <button className="w-full   text-xs items-center bg-[#E5AD06]">
-              More Info <ArrowCircleRightIcon />
-            </button>
+            <div className="mt-7 ">
+              <Unitsoldtable/>
+            </div>
+          </div>
           </div>
         </div>
       </div>
