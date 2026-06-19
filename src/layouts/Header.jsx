@@ -20,13 +20,14 @@ export default function Header({ onMenuClick }) {
       sx={{
         width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
         ml: { md: `${DRAWER_WIDTH}px` },
-        bgcolor: "#0000E3",
+        bgcolor: "#ffffff", //header-color
         zIndex: (theme) => theme.zIndex.drawer - 1,
       }}
     >
+      {" "}
       <Toolbar sx={{ minHeight: "56px !important", px: 2 }}>
         <IconButton
-          color="inherit"
+          color="#0000"
           edge="start"
           onClick={onMenuClick}
           sx={{ mr: 1, display: { md: "none" } }}
@@ -39,7 +40,7 @@ export default function Header({ onMenuClick }) {
         {/* Right actions */}
 
         <Tooltip title="UserProfile">
-          <Avatar onClick={handleLogout}>T</Avatar>
+          <Avatar onClick={handleLogout}></Avatar>
         </Tooltip>
       </Toolbar>
     </AppBar>

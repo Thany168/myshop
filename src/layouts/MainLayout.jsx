@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Box, Toolbar } from "@mui/material";
-
 import Header from "./Header";
 import Sidebar, { DRAWER_WIDTH } from "./Sidebar";
 import Footer from "./Footer";

@@ -209,7 +209,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
             fontSize: 15,
           }}
         >
-          V
+          IMG
         </Box>
         <Typography
           fontSize={14}
@@ -217,7 +217,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
           color="#fff"
           letterSpacing="0.01em"
         >
-          VIP KDMVSTORE
+          E-commerve
         </Typography>
       </Box>
 
