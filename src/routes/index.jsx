@@ -15,6 +15,7 @@ import KnowledgeBase from "../pages/KnowledgeBase/KnowledgeBase";
 import ProductUpdates from "../pages/ProductUpdates/ProductUpdates";
 import Setting from "../pages/Setting/Setting";
 import Price from "../pages/Price/Price";
+import CreateCoupon from "../pages/Coupons/CreateCoupon";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
       },
 
       {
+        path:"coupons/create",
+        element:<CreateCoupon/>
+      },
+
+      {
         path: "inbox",
         element: <Inbox />,
       },
@@ -80,6 +86,7 @@ const router = createBrowserRouter([
         path: "price",
         element: <Price />,
       },
+      
     ],
   },
 ]);
