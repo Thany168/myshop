@@ -19,25 +19,6 @@ import BorderColorSharpIcon from "@mui/icons-material/BorderColorSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DataTable from "./DataTable";
 
-function refreshMessages() {
-  const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
-
-  return Array.from(new Array(50)).map(
-    () => messageExamples[getRandomInt(messageExamples.length)],
-  );
-}
-
-
-export default function FixedBottomNavigation() {
-  const [value, setValue] = React.useState(0);
-  const ref = React.useRef(null);
-  const [messages, setMessages] = React.useState(() => refreshMessages());
-
-  React.useEffect(() => {
-    ref.current.ownerDocument.body.scrollTop = 0;
-    setMessages(refreshMessages());
-  }, [value, setMessages]);
-
 const rows = [
   {
     id: 1,
@@ -62,6 +43,19 @@ const rows = [
   },
   // ...
 ];
+
+export default function FixedBottomNavigation() {
+  const [status, setStatus] = React.useState("All");
+
+  const [value, setValue] = React.useState(0);
+  const ref = React.useRef(null);
+  const messages =
+  status === "All"
+    ? rows
+    : rows.filter((item) => item.status === status);
+
+
+
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <BottomNavigation
@@ -88,6 +82,7 @@ const rows = [
         label="All Coupons"
         showLabel
         icon={null}
+        onClick={() => setStatus("All")}
         sx={{
             alignItems:"start",
             justifyContent:"center",
@@ -102,7 +97,9 @@ const rows = [
         <BottomNavigationAction
         label="Active Coupons"
         showLabel
+         onClick={() => setStatus("Active")}
         icon={null}
+        
         sx={{
             '&.Mui-selected': {
             color: '#3b82f6',
@@ -114,6 +111,7 @@ const rows = [
         label="Expired Coupons"
         showLabel
         icon={null}
+         onClick={() => setStatus("Expired")}
         sx={{
             '&.Mui-selected': {
             color: '#3b82f6',
@@ -173,7 +171,7 @@ const rows = [
             <ListItemText primary={primary} secondary={secondary} />
           </ListItemButton>
         ))} */}
-        <div className="mt-5"><DataTable  row={rows} /></div>
+        <div className="mt-5"><DataTable  row={messages} /></div>
       {/* </List> */}
 
     </Box>
