@@ -16,6 +16,8 @@ import ProductUpdates from "../pages/ProductUpdates/ProductUpdates";
 import Setting from "../pages/Setting/Setting";
 import Price from "../pages/Price/Price";
 import CreateCoupon from "../pages/Coupons/CreateCoupon";
+import AddCustomer from "../pages/Customers/AddCustomer";
+import ViewDetail from "../pages/Customers/ViewDetail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +48,16 @@ const router = createBrowserRouter([
       {
         path: "customer",
         element: <Customers />,
+      },
+
+      {
+        path:"customer/addCustomer",
+        element:<AddCustomer/>
+      },
+
+      {
+        path:"customer/viewdetail",
+        element:<ViewDetail/>
       },
 
       {

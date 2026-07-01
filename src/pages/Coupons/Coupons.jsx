@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonNav from "./components/ButtonNav";
-import Dropdown from "./components/Dropdown";
 import SelectLabels from "./components/SelectLabels";
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Button, FormControl, Input, InputAdornment, TextField } from "@mui/material";
@@ -19,7 +18,6 @@ function Coupons() {
         </div>
       </div>
       <div className="w-full px-7 bg-white mt-5 rounded">
-        
         <div >
           <FixedBottomNavigation/>
         </div>

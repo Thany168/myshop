@@ -1,0 +1,264 @@
+[
+  {
+    "id": 1,
+    "name": "Rakesh Mishra",
+    "profile": "image1",
+    "orders": [
+      {
+        "orderId": "#23534D",
+        "date": "May 25, 3:12 PM",
+        "status": "Completed",
+        "price": 120
+      },
+      {
+        "orderId": "#23535D",
+        "date": "May 26, 10:45 AM",
+        "status": "Completed",
+        "price": 80
+      },
+      {
+        "orderId": "#23536D",
+        "date": "May 27, 1:20 PM",
+        "status": "Completed",
+        "price": 95
+      },
+      {
+        "orderId": "#23545D",
+        "date": "Jun 07, 1:10 PM",
+        "status": "Pending",
+        "price": 110
+      }
+    ],
+    "location": "Europe",
+    "spent": 500,
+    "address": "Panapur langa Hajipur,vaishali 844124 \nIndia",
+    "email": "rakesh@gmail.com",
+    "phone": "+49 1512345678",
+    "tags": ["VIP Customer", "Europe"]
+  },
+  {
+    "id": 2,
+    "name": "Emma Wilson",
+    "profile": "image2",
+    "orders": [
+      {
+        "orderId": "#23539D",
+        "date": "Jun 01, 9:20 AM",
+        "status": "Pending",
+        "price": 210
+      },
+      {
+        "orderId": "#23540D",
+        "date": "Jun 02, 5:30 PM",
+        "status": "Pending",
+        "price": 75
+      }
+    ],
+    "location": "Europe",
+    "spent": 780,
+    "address": "Paris, France",
+    "email": "emma@gmail.com",
+    "phone": "+33 612345678",
+    "tags": ["Europe"]
+  },
+  {
+    "id": 3,
+    "name": "Liam Brown",
+    "profile": "image3",
+    "orders": [
+      {
+        "orderId": "#23541D",
+        "date": "Jun 03, 10:45 AM",
+        "status": "Completed",
+        "price": 180
+      },
+      {
+        "orderId": "#23542D",
+        "date": "Jun 04, 3:10 PM",
+        "status": "Completed",
+        "price": 90
+      }
+    ],
+    "location": "Europe",
+    "spent": 620,
+    "address": "Madrid, Spain",
+    "email": "liam@gmail.com",
+    "phone": "+34 611223344",
+    "tags": ["Regular", "Europe"]
+  },
+  {
+    "id": 4,
+    "name": "Sophia Davis",
+    "profile": "image4",
+    "orders": [
+      {
+        "orderId": "#23543D",
+        "date": "Jun 05, 8:40 AM",
+        "status": "Completed",
+        "price": 135
+      },
+      {
+        "orderId": "#23544D",
+        "date": "Jun 06, 2:20 PM",
+        "status": "Completed",
+        "price": 155
+      }
+    ],
+    "location": "Europe",
+    "spent": 810,
+    "address": "Rome, Italy",
+    "email": "sophia@gmail.com",
+    "phone": "+39 345667788",
+    "tags": ["VIP Customer", "Europe"]
+  },
+  {
+    "id": 5,
+    "name": "Noah Johnson",
+    "profile": "image5",
+    "orders": [
+      {
+        "orderId": "#23545D",
+        "date": "Jun 07, 1:10 PM",
+        "status": "Pending",
+        "price": 110
+      },
+      {
+        "orderId": "#23546D",
+        "date": "Jun 08, 11:00 AM",
+        "status": "Pending",
+        "price": 230
+      }
+    ],
+    "location": "Europe",
+    "spent": 940,
+    "address": "Amsterdam, Netherlands",
+    "email": "noah@gmail.com",
+    "phone": "+31 612345678",
+    "tags": ["Europe"]
+  },
+  {
+    "id": 6,
+    "name": "Olivia Martin",
+    "profile": "image6",
+    "orders": [
+      {
+        "orderId": "#23547D",
+        "date": "Jun 09, 6:15 PM",
+        "status": "Completed",
+        "price": 175
+      },
+      {
+        "orderId": "#23548D",
+        "date": "Jun 10, 9:45 AM",
+        "status": "Completed",
+        "price": 120
+      }
+    ],
+    "location": "Europe",
+    "spent": 680,
+    "address": "Brussels, Belgium",
+    "email": "olivia@gmail.com",
+    "phone": "+32 478112233",
+    "tags": ["Europe"]
+  },
+  {
+    "id": 7,
+    "name": "Hiro Tanaka",
+    "profile": "image7",
+    "orders": [
+      {
+        "orderId": "#23549D",
+        "date": "Jun 11, 7:25 PM",
+        "status": "Pending",
+        "price": 260
+      },
+      {
+        "orderId": "#23550D",
+        "date": "Jun 12, 4:50 PM",
+        "status": "Pending",
+        "price": 140
+      }
+    ],
+    "location": "Asia",
+    "spent": 990,
+    "address": "Tokyo, Japan",
+    "email": "hiro@gmail.com",
+    "phone": "+81 901234567",
+    "tags": ["VIP Customer", "Asia"]
+  },
+  {
+    "id": 8,
+    "name": "Ananya Sharma",
+    "profile": "image8",
+    "orders": [
+      {
+        "orderId": "#23551D",
+        "date": "Jun 13, 3:20 PM",
+        "status": "Completed",
+        "price": 150
+      },
+      {
+        "orderId": "#23552D",
+        "date": "Jun 14, 12:30 PM",
+        "status": "Completed",
+        "price": 95
+      }
+    ],
+    "location": "Asia",
+    "spent": 560,
+    "address": "Delhi, India",
+    "email": "ananya@gmail.com",
+    "phone": "+91 9876543210",
+    "tags": ["Asia"]
+  },
+  {
+    "id": 9,
+    "name": "Min Soo Kim",
+    "profile": "image9",
+    "orders": [
+      {
+        "orderId": "#23553D",
+        "date": "Jun 15, 5:40 PM",
+        "status": "Completed",
+        "price": 205
+      },
+      {
+        "orderId": "#23554D",
+        "date": "Jun 16, 8:15 AM",
+        "status": "Completed",
+        "price": 175
+      }
+    ],
+    "location": "Asia",
+    "spent": 870,
+    "address": "Seoul, South Korea",
+    "email": "minsoo@gmail.com",
+    "phone": "+82 1012345678",
+    "tags": ["Regular", "Asia"]
+  },
+  {
+    "id": 10,
+    "name": "Wei Chen",
+    "profile": "image10",
+    "orders": [
+      {
+        "orderId": "#23555D",
+        "date": "Jun 17, 11:50 AM",
+        "status": "Pending",
+        "price": 115
+      },
+      {
+        "orderId": "#23556D",
+        "date": "Jun 18, 2:45 PM",
+        "status": "Pending",
+        "price": 190
+      }
+    ],
+    "location": "Asia",
+    "spent": 710,
+    "address": "Singapore",
+    "email": "wei@gmail.com",
+    "phone": "+65 81234567",
+    "tags": ["Asia"]
+  }
+]
